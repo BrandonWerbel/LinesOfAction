@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class Lines {
 
-    private GamePiece[][] board;
+    private Board board;
 
-    public Lines(GamePiece[][] board) {
+    public Lines(Board board) {
         this.board = board;
     }
 
@@ -19,7 +19,7 @@ public class Lines {
 
         for(int x = 0; x < Constants.BOARD_SIZE; x++) {
             coordinates.add(new Coordinate(x, coordinate.getY()));
-            pieces.add(getPiece(coordinates.getLast()));
+            pieces.add(board.getPiece(coordinates.getLast()));
         }
 
         return new Line(pieces, coordinates);
@@ -31,7 +31,7 @@ public class Lines {
 
         for(int y = 0; y < Constants.BOARD_SIZE; y++) {
             coordinates.add(new Coordinate(coordinate.getX(), y));
-            pieces.add(getPiece(coordinates.getLast()));
+            pieces.add(board.getPiece(coordinates.getLast()));
         }
 
         return new Line(pieces, coordinates);
@@ -50,7 +50,7 @@ public class Lines {
 
         while(newCoordinate.isOnBoard()){
             coordinates.add(newCoordinate);
-            pieces.add(getPiece(newCoordinate));
+            pieces.add(board.getPiece(newCoordinate));
 
             newCoordinate = newCoordinate.moveForwardDiagonal(1);
         }
@@ -71,15 +71,11 @@ public class Lines {
 
         while(newCoordinate.isOnBoard()){
             coordinates.add(newCoordinate);
-            pieces.add(getPiece(newCoordinate));
+            pieces.add(board.getPiece(newCoordinate));
 
             newCoordinate = newCoordinate.moveBackwardDiagonal(1);
         }
 
         return new Line(pieces, coordinates);
-    }
-
-    private GamePiece getPiece(Coordinate coordinate) {
-        return board[coordinate.getX()][coordinate.getY()];
     }
 }

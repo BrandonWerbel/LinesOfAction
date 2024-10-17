@@ -9,12 +9,12 @@ import org.linesOfAction.util.Coordinate;
 
 public class Game {
 
-    private GamePiece[][] board;
+    private Board board;
 
     private GamePiece currentPlayer;
 
     public Game() {
-        board = new GamePiece[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
+        board = new Board();
         currentPlayer = GamePiece.BLACK;
 
         setUpNewGame();
@@ -22,34 +22,22 @@ public class Game {
 
     private void setUpNewGame() {
         for(int y = 1; y < Constants.BOARD_SIZE - 1; y++) {
-            board[0][y] = GamePiece.WHITE;
-            board[Constants.BOARD_SIZE - 1][y] = GamePiece.WHITE;
+            board.setPiece(0, y, GamePiece.WHITE);
+            board.setPiece(Constants.BOARD_SIZE - 1, y, GamePiece.WHITE);
         }
 
         for(int x = 1; x < Constants.BOARD_SIZE - 1; x++) {
-            board[x][0] = GamePiece.BLACK;
-            board[x][Constants.BOARD_SIZE - 1] = GamePiece.BLACK;
+            board.setPiece(x, 0, GamePiece.BLACK);
+            board.setPiece(x, Constants.BOARD_SIZE - 1, GamePiece.BLACK);
         }
-    }
-
-    public GamePiece getPiece(int x, int y) {
-        return board[x][y];
-    }
-
-    public GamePiece getPiece(Coordinate coordinate) {
-        return board[coordinate.getX()][coordinate.getY()];
     }
 
     public void move(Coordinate start, Coordinate target) {
         if(isValidMove(start, target)){
-            setPiece(target, getPiece(start));
-            setPiece(start, null);
+            board.setPiece(target, board.getPiece(start));
+            board.setPiece(start, null);
             switchPlayer();
         }
-    }
-
-    private void setPiece(Coordinate coordinate, GamePiece piece) {
-        board[coordinate.getX()][coordinate.getY()] = piece;
     }
 
     private void switchPlayer() {
@@ -67,7 +55,7 @@ public class Game {
 
     public HashSet<Coordinate> getPossibleMovement(Coordinate coordinate) {
         HashSet<Coordinate> moves = new HashSet<Coordinate>();
-        GamePiece piece = getPiece(coordinate);
+        GamePiece piece = board.getPiece(coordinate);
 
         if(piece != currentPlayer)
             return moves;
@@ -94,7 +82,7 @@ public class Game {
         GamePiece[][] transposedBoard = new GamePiece[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
         for(int x = 0; x < Constants.BOARD_SIZE; x++) {
             for(int y = 0; y < Constants.BOARD_SIZE; y++) {
-                transposedBoard[x][y] = board[y][x];
+                transposedBoard[x][y] = board.getPiece(y, x);
             }
         }
 
@@ -108,4 +96,6 @@ public class Game {
                 .reduce("", (result, element) -> result + " " + element))
             .reduce("", (result, element) -> result + "\n" + element);
     }
+
+    public GamePiece getPiece(int x, int y) { return board.getPiece(x, y); }
 }

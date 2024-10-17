@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 public class BoardPanel extends JPanel implements ActionListener {
 
-    Game board;
+    Game game;
     TileButton[][] tiles;
 
     TileButton selectedTile;
@@ -25,7 +25,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         setLayout(new GridLayout(Constants.BOARD_SIZE, Constants.BOARD_SIZE));
         setSize(Constants.BOARD_SIZE * Constants.BUTTON_SIZE,Constants.BOARD_SIZE * Constants.BUTTON_SIZE);
 
-        board = new Game();
+        game = new Game();
         tiles = new TileButton[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
         selectedTile = null;
         currentPossibleMoves = new HashSet<TileButton>();
@@ -49,7 +49,7 @@ public class BoardPanel extends JPanel implements ActionListener {
     private void updateTiles() {
         for(int x = 0; x < Constants.BOARD_SIZE; x++) {
             for(int y = 0; y < Constants.BOARD_SIZE; y++) {
-                tiles[x][y].addPiece(board.getPiece(x, y));
+                tiles[x][y].addPiece(game.getPiece(x, y));
             }
         }
     }
@@ -57,7 +57,7 @@ public class BoardPanel extends JPanel implements ActionListener {
     private void selectTile(TileButton tile) {
         unselectTile();
 
-        if(!board.getPossibleMovement(tile.getCoordinate()).isEmpty()) {
+        if(!game.getPossibleMovement(tile.getCoordinate()).isEmpty()) {
             this.selectedTile = tile;
             tile.select();
             showPossibleMoves(tile.getCoordinate());
@@ -74,7 +74,7 @@ public class BoardPanel extends JPanel implements ActionListener {
 
     private void showPossibleMoves(Coordinate coordinate) {
         unshowPossibleMoves();
-        HashSet<Coordinate> moves = board.getPossibleMovement(coordinate);
+        HashSet<Coordinate> moves = game.getPossibleMovement(coordinate);
         for(Coordinate move : moves) {
             TileButton tile = getTile(move);
             currentPossibleMoves.add(tile);
@@ -99,7 +99,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         if(this.selectedTile == null) {
             selectTile(tile);
         } else {
-            board.move(selectedTile.getCoordinate(), tile.getCoordinate());
+            game.move(selectedTile.getCoordinate(), tile.getCoordinate());
             unselectTile();
         }
 
