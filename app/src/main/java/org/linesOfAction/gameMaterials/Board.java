@@ -2,7 +2,7 @@ package org.linesOfAction.gameMaterials;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.stream.*;
+import java.util.stream.Stream;
 
 import org.linesOfAction.util.Coordinate;
 
