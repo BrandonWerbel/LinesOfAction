@@ -3,6 +3,8 @@ package org.linesOfAction.gameMaterials;
 import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
+import java.util.stream.Stream;
+
 public class Board {
 
     GamePiece[][] board;
@@ -25,6 +27,29 @@ public class Board {
 
     public void setPiece(Coordinate coordinate, GamePiece piece) {
         board[coordinate.getX()][coordinate.getY()] = piece;
+    }
+
+    /**
+     * @return string representation of current board, with O's representing whites and X's representing blacks
+     */
+    @Override
+    public String toString() {
+        GamePiece[][] transposedBoard = new GamePiece[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
+        for(int x = 0; x < Constants.BOARD_SIZE; x++) {
+            for(int y = 0; y < Constants.BOARD_SIZE; y++) {
+                transposedBoard[x][y] = getPiece(y, x);
+            }
+        }
+
+        return Stream.of(transposedBoard)
+            .map((row) -> Stream.of(row))
+            .map((row) ->
+                row.map((piece) -> {
+                    if (piece == GamePiece.BLACK) return "X";
+                    else if (piece == GamePiece.WHITE) return "O";
+                    else return "-";})
+                .reduce("", (result, element) -> result + " " + element))
+            .reduce("", (result, element) -> result + "\n" + element);
     }
     
 }

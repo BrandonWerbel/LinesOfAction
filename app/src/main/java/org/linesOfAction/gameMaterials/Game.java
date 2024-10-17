@@ -2,7 +2,6 @@ package org.linesOfAction.gameMaterials;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.stream.Stream;
 
 import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
@@ -79,22 +78,7 @@ public class Game {
      */
     @Override
     public String toString() {
-        GamePiece[][] transposedBoard = new GamePiece[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
-        for(int x = 0; x < Constants.BOARD_SIZE; x++) {
-            for(int y = 0; y < Constants.BOARD_SIZE; y++) {
-                transposedBoard[x][y] = board.getPiece(y, x);
-            }
-        }
-
-        return Stream.of(transposedBoard)
-            .map((row) -> Stream.of(row))
-            .map((row) ->
-                row.map((piece) -> {
-                    if (piece == GamePiece.BLACK) return "X";
-                    else if (piece == GamePiece.WHITE) return "O";
-                    else return "-";})
-                .reduce("", (result, element) -> result + " " + element))
-            .reduce("", (result, element) -> result + "\n" + element);
+        return board.toString();
     }
 
     public GamePiece getPiece(int x, int y) { return board.getPiece(x, y); }
