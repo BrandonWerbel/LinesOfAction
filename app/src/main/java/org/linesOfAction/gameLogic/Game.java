@@ -1,8 +1,12 @@
-package org.linesOfAction.gameMaterials;
+package org.linesOfAction.gameLogic;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.linesOfAction.gameMaterials.Board;
+import org.linesOfAction.gameMaterials.GamePiece;
+import org.linesOfAction.gameMaterials.Line;
+import org.linesOfAction.gameMaterials.Lines;
 import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 

@@ -2,7 +2,7 @@ package org.linesOfAction.gui;
 
 import javax.swing.JPanel;
 
-import org.linesOfAction.gameMaterials.Game;
+import org.linesOfAction.gameLogic.Game;
 import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
