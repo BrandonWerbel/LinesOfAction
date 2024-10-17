@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
 import org.linesOfAction.gameMaterials.GamePiece;
+import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
 public class TileButton extends JButton {
@@ -27,11 +28,11 @@ public class TileButton extends JButton {
         selected = false;
         this.defaultBorder = this.getBorder();
         
-        setMinimumSize(new Dimension(100, 100));
-        setMaximumSize(new Dimension(100, 100));
+        setMinimumSize(new Dimension(Constants.BUTTON_SIZE, Constants.BUTTON_SIZE));
+        setMaximumSize(new Dimension(Constants.BUTTON_SIZE, Constants.BUTTON_SIZE));
         setOpaque(true);
 
-        backgroundColor = (x + y) % 2 == 0 ? new Color(173, 123, 106) : new Color(102, 51, 0);
+        backgroundColor = (x + y) % 2 == 0 ? Constants.LIGHT_TILE_COLOR : Constants.DARK_TILE_COLOR;
 
         setBackground(backgroundColor);
     }
@@ -74,8 +75,8 @@ public class TileButton extends JButton {
 
         g.setColor(this.piece.getValue());
         
-        int pieceWidth = (int) (this.getWidth() * 0.8);
-        int pieceHeight = (int) (this.getHeight() * 0.8);
+        int pieceWidth = (int) (this.getWidth() * Constants.GAMEPIECE_RATIO);
+        int pieceHeight = (int) (this.getHeight() * Constants.GAMEPIECE_RATIO);
         int pieceX = (this.getWidth() - pieceWidth) / 2;
         int pieceY = (this.getHeight() - pieceHeight) / 2;
 
@@ -83,10 +84,10 @@ public class TileButton extends JButton {
     }
 
     private void paintSelection(Graphics2D g) {
-        g.setColor(Color.BLUE);
+        g.setColor(Constants.SELECTION_MARKER_COLOR);
         
-        int ovalWidth = (int) (this.getWidth() * 0.3);
-        int ovalHeight = (int) (this.getHeight() * 0.3);
+        int ovalWidth = (int) (this.getWidth() * Constants.TILE_SELECTION_MARKER_RATIO);
+        int ovalHeight = (int) (this.getHeight() * Constants.TILE_SELECTION_MARKER_RATIO);
         int ovalX = (this.getWidth() - ovalWidth) / 2;
         int ovalY = (this.getHeight() - ovalHeight) / 2;
 
@@ -111,7 +112,7 @@ public class TileButton extends JButton {
     }
 
     public void addPossibleMove() {
-        this.setBorder(BorderFactory.createLineBorder(Color.GREEN, 10));
+        this.setBorder(BorderFactory.createLineBorder(Color.GREEN, Constants.POSSIBLE_MOVE_BORDER_THICKNESS));
     }
     
 }

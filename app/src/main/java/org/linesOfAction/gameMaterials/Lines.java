@@ -1,5 +1,6 @@
 package org.linesOfAction.gameMaterials;
 
+import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Lines {
         ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
         ArrayList<GamePiece> pieces = new ArrayList<GamePiece>();
 
-        for(int x = 0; x < 8; x++) {
+        for(int x = 0; x < Constants.BOARD_SIZE; x++) {
             coordinates.add(new Coordinate(x, coordinate.getY()));
             pieces.add(getPiece(coordinates.getLast()));
         }
@@ -28,7 +29,7 @@ public class Lines {
         ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
         ArrayList<GamePiece> pieces = new ArrayList<GamePiece>();
 
-        for(int y = 0; y < 8; y++) {
+        for(int y = 0; y < Constants.BOARD_SIZE; y++) {
             coordinates.add(new Coordinate(coordinate.getX(), y));
             pieces.add(getPiece(coordinates.getLast()));
         }
@@ -43,7 +44,7 @@ public class Lines {
         int startingX = coordinate.getX();
         int startingY = coordinate.getY();
 
-        int offsetLeft = Math.min(startingX, 7 - startingY);
+        int offsetLeft = Math.min(startingX, Constants.BOARD_SIZE - 1 - startingY);
 
         Coordinate newCoordinate = coordinate.moveForwardDiagonal(-offsetLeft);
 

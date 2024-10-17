@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.stream.Stream;
 
+import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
 public class Board {
@@ -13,21 +14,21 @@ public class Board {
     private GamePiece currentPlayer;
 
     public Board() {
-        board = new GamePiece[8][8];
+        board = new GamePiece[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
         currentPlayer = GamePiece.BLACK;
 
         setUpNewGame();
     }
 
     private void setUpNewGame() {
-        for(int y = 1; y < 7; y++) {
+        for(int y = 1; y < Constants.BOARD_SIZE - 1; y++) {
             board[0][y] = GamePiece.WHITE;
-            board[7][y] = GamePiece.WHITE;
+            board[Constants.BOARD_SIZE - 1][y] = GamePiece.WHITE;
         }
 
-        for(int x = 1; x < 7; x++) {
+        for(int x = 1; x < Constants.BOARD_SIZE - 1; x++) {
             board[x][0] = GamePiece.BLACK;
-            board[x][7] = GamePiece.BLACK;
+            board[x][Constants.BOARD_SIZE - 1] = GamePiece.BLACK;
         }
     }
 
@@ -90,9 +91,9 @@ public class Board {
      */
     @Override
     public String toString() {
-        GamePiece[][] transposedBoard = new GamePiece[8][8];
-        for(int x = 0; x < 8; x++) {
-            for(int y = 0; y < 8; y++) {
+        GamePiece[][] transposedBoard = new GamePiece[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
+        for(int x = 0; x < Constants.BOARD_SIZE; x++) {
+            for(int y = 0; y < Constants.BOARD_SIZE; y++) {
                 transposedBoard[x][y] = board[y][x];
             }
         }

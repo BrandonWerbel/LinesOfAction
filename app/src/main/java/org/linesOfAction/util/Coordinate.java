@@ -22,7 +22,7 @@ public class Coordinate {
     }
 
     public boolean isOnBoard() {
-        return x < 8 && y < 8 && x >= 0 && y >= 0;
+        return x < Constants.BOARD_SIZE && y < Constants.BOARD_SIZE && x >= 0 && y >= 0;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Coordinate {
 
     @Override
     public int hashCode() {
-        return this.getX() * 8 + this.getY();
+        return this.getX() * Constants.BOARD_SIZE + this.getY();
     }
 
 }
