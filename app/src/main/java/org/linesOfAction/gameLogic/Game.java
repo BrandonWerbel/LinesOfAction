@@ -30,7 +30,7 @@ public class Game {
         }
 
         for(int x = 1; x < Constants.BOARD_SIZE - 1; x++) {
-            // board.setPiece(x, 0, GamePiece.BLACK);
+            board.setPiece(x, 0, GamePiece.BLACK);
             board.setPiece(x, Constants.BOARD_SIZE - 1, GamePiece.BLACK);
         }
     }
