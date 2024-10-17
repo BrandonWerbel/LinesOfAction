@@ -1,5 +1,7 @@
 package org.linesOfAction.util;
 
+import java.util.HashSet;
+
 public class Coordinate {
 
     int x;
@@ -19,6 +21,32 @@ public class Coordinate {
     
     public Coordinate moveBackwardDiagonal(int offset) {
         return new Coordinate(x + offset, y + offset);
+    }
+
+    public Coordinate moveVertical(int offset) {
+        return new Coordinate(x, y + offset);
+    }
+
+    public Coordinate moveHorizontal(int offset) {
+        return new Coordinate(x + offset, y);
+    }
+
+    public HashSet<Coordinate> getNeighbors() {
+        HashSet<Coordinate> neighbors = new HashSet<Coordinate>();
+
+        neighbors.add(moveVertical(1));
+        neighbors.add(moveVertical(-1));
+        neighbors.add(moveHorizontal(1));
+        neighbors.add(moveHorizontal(-1));
+        neighbors.add(moveForwardDiagonal(1));
+        neighbors.add(moveForwardDiagonal(-1));
+        neighbors.add(moveBackwardDiagonal(1));
+        neighbors.add(moveBackwardDiagonal(-1));
+
+        neighbors.removeIf((element) -> !element.isOnBoard());
+
+        return neighbors;
+
     }
 
     public boolean isOnBoard() {

@@ -29,6 +29,14 @@ public class Board {
         board[coordinate.getX()][coordinate.getY()] = piece;
     }
 
+    public int getNumPieces(GamePiece player) {
+        return Stream.of(board)
+            .mapToInt((column) -> Stream.of(column)
+                .mapToInt((piece) -> piece == player ? 1 : 0)
+                .sum())
+            .sum();
+    }
+
     /**
      * @return string representation of current board, with O's representing whites and X's representing blacks
      */

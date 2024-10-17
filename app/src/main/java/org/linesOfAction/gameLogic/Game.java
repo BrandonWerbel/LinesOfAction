@@ -30,7 +30,7 @@ public class Game {
         }
 
         for(int x = 1; x < Constants.BOARD_SIZE - 1; x++) {
-            board.setPiece(x, 0, GamePiece.BLACK);
+            // board.setPiece(x, 0, GamePiece.BLACK);
             board.setPiece(x, Constants.BOARD_SIZE - 1, GamePiece.BLACK);
         }
     }
@@ -84,6 +84,10 @@ public class Game {
     public String toString() {
         return board.toString();
     }
+
+    public boolean hasWon(GamePiece player) { return WinValidator.hasWon(player, board); }
+
+    public int getNumPieces(GamePiece player) { return board.getNumPieces(player); }
 
     public GamePiece getPiece(int x, int y) { return board.getPiece(x, y); }
 }
