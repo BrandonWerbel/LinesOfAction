@@ -1,8 +1,10 @@
 package org.linesOfAction.gui;
 
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import org.linesOfAction.gameLogic.Game;
+import org.linesOfAction.gameMaterials.GamePiece;
 import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
@@ -101,8 +103,24 @@ public class BoardPanel extends JPanel implements ActionListener {
         } else {
             game.move(selectedTile.getCoordinate(), tile.getCoordinate());
             unselectTile();
+
+            if(!game.isGameOver().isEmpty()) {
+                endGame(game.isGameOver().get());
+            }
         }
 
         updateTiles();
+    }
+
+    private void endGame(GamePiece winner) {
+
+        for(TileButton[] column : tiles) {
+            for(TileButton tile : column) {
+                tile.setEnabled(false);
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, winner.toString() + " wins!");
+        System.out.println(winner.toString() + " wins!");
     }
 }

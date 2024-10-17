@@ -2,6 +2,7 @@ package org.linesOfAction.gameLogic;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 
 import org.linesOfAction.gameMaterials.Board;
 import org.linesOfAction.gameMaterials.GamePiece;
@@ -85,7 +86,15 @@ public class Game {
         return board.toString();
     }
 
-    public boolean hasWon(GamePiece player) { return WinValidator.hasWon(player, board); }
+    public Optional<GamePiece> isGameOver() {
+        if(WinValidator.hasWon(GamePiece.WHITE, board)) {
+            return Optional.of(GamePiece.WHITE);
+        }
+        if(WinValidator.hasWon(GamePiece.BLACK, board)) {
+            return Optional.of(GamePiece.BLACK);
+        }
+        return Optional.empty();
+    }
 
     public int getNumPieces(GamePiece player) { return board.getNumPieces(player); }
 

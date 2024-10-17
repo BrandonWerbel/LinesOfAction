@@ -4,13 +4,20 @@ import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
 import java.util.stream.Stream;
+import java.util.Arrays;
 
 public class Board {
 
-    GamePiece[][] board;
+    private GamePiece[][] board;
 
     public Board() {
         this.board = new GamePiece[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
+    }
+
+    public Board(Board otherBoard) {
+        this.board = Stream.of(otherBoard.board)
+                        .map((column) -> Arrays.copyOf(column, column.length))
+                        .toArray(GamePiece[][]::new);
     }
 
     public GamePiece getPiece(int x, int y) {

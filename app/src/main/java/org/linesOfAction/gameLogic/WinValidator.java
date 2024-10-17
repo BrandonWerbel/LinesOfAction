@@ -21,7 +21,7 @@ public class WinValidator {
             return true;
         }
 
-        Board tempBoard = removeFormation(firstPiece.get(), board);
+        Board tempBoard = removeFormation(firstPiece.get(), new Board(board));
 
         if(tempBoard.getNumPieces(player) == 0) {
             return true;
@@ -33,7 +33,7 @@ public class WinValidator {
     private static Board removeFormation(Coordinate startingCoordinate, Board board) {
         Board newBoard = board;
 
-        if(board.getPiece(startingCoordinate) == null) 
+        if(newBoard.getPiece(startingCoordinate) == null) 
             return newBoard;
 
         GamePiece player = newBoard.getPiece(startingCoordinate);
@@ -42,7 +42,7 @@ public class WinValidator {
         HashSet<Coordinate> neighbors = startingCoordinate.getNeighbors();
         for(Coordinate neighbor : neighbors) {
             if(newBoard.getPiece(neighbor) == player) {
-                removeFormation(neighbor, board);
+                removeFormation(neighbor, newBoard);
             }
         }
 
