@@ -103,13 +103,13 @@ public class BoardPanel extends JPanel implements ActionListener {
         } else {
             game.move(selectedTile.getCoordinate(), tile.getCoordinate());
             unselectTile();
-
-            if(!game.isGameOver().isEmpty()) {
-                endGame(game.isGameOver().get());
-            }
         }
 
         updateTiles();
+
+        if(!game.isGameOver().isEmpty()) {
+            endGame(game.isGameOver().get());
+        }
     }
 
     private void endGame(GamePiece winner) {
