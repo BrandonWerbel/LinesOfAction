@@ -39,16 +39,16 @@ public class Board {
         return board[coordinate.getX()][coordinate.getY()];
     }
 
-    private void setPiece(Coordinate coordinate, GamePiece piece) {
-        board[coordinate.getX()][coordinate.getY()] = piece;
-    }
-
     public void move(Coordinate start, Coordinate target) {
         if(isValidMove(start, target)){
             setPiece(target, getPiece(start));
             setPiece(start, null);
             switchPlayer();
         }
+    }
+
+    private void setPiece(Coordinate coordinate, GamePiece piece) {
+        board[coordinate.getX()][coordinate.getY()] = piece;
     }
 
     private void switchPlayer() {
