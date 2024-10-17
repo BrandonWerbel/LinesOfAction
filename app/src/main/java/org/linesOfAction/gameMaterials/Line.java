@@ -62,7 +62,7 @@ public class Line {
         int minIndex = Math.min(startIndex, targetIndex);
         int maxIndex = Math.max(startIndex, targetIndex);
         for(int i = minIndex + 1; i < maxIndex; i++) {
-            if(GamePiece.areOppositeColor(pieces.get(startIndex), pieces.get(i)))
+            if(pieces.get(startIndex).isOppositeColorTo(pieces.get(i)))
                 return false;
         }
 

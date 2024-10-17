@@ -15,8 +15,8 @@ public enum GamePiece {
        return color;
     }
 
-    public static boolean areOppositeColor(GamePiece piece1, GamePiece piece2) {
-        if(piece1 == null || piece2 == null) return false;
-        return (piece1 == GamePiece.WHITE ^ piece2 == GamePiece.WHITE);
+    public boolean isOppositeColorTo(GamePiece piece2) {
+        if(this == null || piece2 == null) return false;
+        return (this == GamePiece.WHITE ^ piece2 == GamePiece.WHITE);
     }
 }
