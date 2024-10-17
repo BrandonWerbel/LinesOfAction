@@ -7,13 +7,13 @@ import java.util.stream.Stream;
 import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
-public class Board {
+public class Game {
 
     private GamePiece[][] board;
 
     private GamePiece currentPlayer;
 
-    public Board() {
+    public Game() {
         board = new GamePiece[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
         currentPlayer = GamePiece.BLACK;
 

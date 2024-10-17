@@ -2,7 +2,7 @@ package org.linesOfAction.gui;
 
 import javax.swing.JPanel;
 
-import org.linesOfAction.gameMaterials.Board;
+import org.linesOfAction.gameMaterials.Game;
 import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 public class BoardPanel extends JPanel implements ActionListener {
 
-    Board board;
+    Game board;
     TileButton[][] tiles;
 
     TileButton selectedTile;
@@ -25,7 +25,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         setLayout(new GridLayout(Constants.BOARD_SIZE, Constants.BOARD_SIZE));
         setSize(Constants.BOARD_SIZE * Constants.BUTTON_SIZE,Constants.BOARD_SIZE * Constants.BUTTON_SIZE);
 
-        board = new Board();
+        board = new Game();
         tiles = new TileButton[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
         selectedTile = null;
         currentPossibleMoves = new HashSet<TileButton>();
