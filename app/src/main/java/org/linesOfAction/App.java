@@ -3,13 +3,30 @@
  */
 package org.linesOfAction;
 
+import org.linesOfAction.gameMaterials.Board;
+import org.linesOfAction.util.Coordinate;
+
+import java.io.Console;
+
 public class App {
-    public String getGreeting() {
-        assert false;
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Board board = new Board();
+        System.out.println(board);
+        Console c = System.console();
+        while(true) {
+            String start = c.readLine("start coordinate (x,y): ");
+            String target = c.readLine("target coordinate (x,y): ");
+
+            Coordinate startCoordinate = new Coordinate(
+                                            Character.getNumericValue(start.charAt(1)), 
+                                            Character.getNumericValue(start.charAt(3)));
+
+            Coordinate targetCoordinate = new Coordinate(
+                                            Character.getNumericValue(target.charAt(1)), 
+                                            Character.getNumericValue(target.charAt(3)));
+            board.move(startCoordinate, targetCoordinate);
+            System.out.println(board);
+        }
     }
 }
