@@ -3,30 +3,27 @@
  */
 package org.linesOfAction;
 
-import org.linesOfAction.gameMaterials.Board;
-import org.linesOfAction.util.Coordinate;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
-import java.io.Console;
+import org.linesOfAction.gui.LinesOfActionGui;
 
 public class App {
 
     public static void main(String[] args) {
-        Board board = new Board();
-        System.out.println(board);
-        Console c = System.console();
-        while(true) {
-            String start = c.readLine("start coordinate (x,y): ");
-            String target = c.readLine("target coordinate (x,y): ");
-
-            Coordinate startCoordinate = new Coordinate(
-                                            Character.getNumericValue(start.charAt(1)), 
-                                            Character.getNumericValue(start.charAt(3)));
-
-            Coordinate targetCoordinate = new Coordinate(
-                                            Character.getNumericValue(target.charAt(1)), 
-                                            Character.getNumericValue(target.charAt(3)));
-            board.move(startCoordinate, targetCoordinate);
-            System.out.println(board);
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
         }
+
+        LinesOfActionGui board = new LinesOfActionGui();
+        board.setVisible(true);
     }
 }
