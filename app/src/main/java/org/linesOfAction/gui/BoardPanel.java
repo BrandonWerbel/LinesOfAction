@@ -56,7 +56,7 @@ public class BoardPanel extends JPanel implements ActionListener {
     private void selectTile(TileButton tile) {
         unselectTile();
 
-        if(tile.isOccupied()) {
+        if(!board.getPossibleMovement(tile.getCoordinate()).isEmpty()) {
             this.selectedTile = tile;
             tile.select();
             showPossibleMoves(tile.getCoordinate());

@@ -10,8 +10,11 @@ public class Board {
 
     private GamePiece[][] board;
 
+    private GamePiece currentPlayer;
+
     public Board() {
         board = new GamePiece[8][8];
+        currentPlayer = GamePiece.BLACK;
 
         setUpNewGame();
     }
@@ -44,8 +47,18 @@ public class Board {
         if(isValidMove(start, target)){
             setPiece(target, getPiece(start));
             setPiece(start, null);
+            switchPlayer();
         }
-    } 
+    }
+
+    private void switchPlayer() {
+        switch(currentPlayer) {
+            case BLACK -> currentPlayer = GamePiece.WHITE;
+            case WHITE -> currentPlayer = GamePiece.BLACK;
+            default -> throw new IllegalStateException("current player is neither black nor white");
+            
+        }
+    }
 
     private boolean isValidMove(Coordinate start, Coordinate target) {
         return getPossibleMovement(start).contains(target);
@@ -55,7 +68,7 @@ public class Board {
         HashSet<Coordinate> moves = new HashSet<Coordinate>();
         GamePiece piece = getPiece(coordinate);
 
-        if(piece == null)
+        if(piece != currentPlayer)
             return moves;
 
         ArrayList<Line> lines = new ArrayList<Line>();
