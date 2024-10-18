@@ -21,8 +21,6 @@ public class Line {
         int range = getRange();
         int startIndex = coordinates.indexOf(startCoordinate);
 
-        String.format("Given coordinate %s is not in line %s", startCoordinate.toString(), coordinates.toString());
-
         if(startIndex < 0) 
             throw new IllegalArgumentException(
                 String.format("Given coordinate %s is not in line %s", 
