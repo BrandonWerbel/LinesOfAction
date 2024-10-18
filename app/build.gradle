@@ -43,6 +43,7 @@ tasks.named('test') {
 }
 
 jar {
+    archivesBaseName = "lines-of-action"
     manifest {
         attributes 'Main-Class': 'org.linesOfAction.App'
     }
