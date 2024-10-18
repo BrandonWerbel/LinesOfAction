@@ -121,6 +121,5 @@ public class BoardPanel extends JPanel implements ActionListener {
         }
 
         JOptionPane.showMessageDialog(null, winner.toString() + " wins!");
-        System.out.println(winner.toString() + " wins!");
     }
 }
