@@ -19,7 +19,7 @@ public class Line {
     /** 
      * Gets all legal moves starting from a given coordinate
      * @param startCoordinate
-     * @return HashSet<Coordinate>
+     * @return HashSet Coordinate
      */
     public HashSet<Coordinate> getMoves(Coordinate startCoordinate) {
 

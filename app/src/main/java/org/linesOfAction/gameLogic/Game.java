@@ -116,7 +116,7 @@ public class Game {
 
     
     /** Determines whether or not the game has ended
-     * @return Optional<GamePiece> Will return a white
+     * @return Optional GamePiece Will return a white
      *  gamePiece if white has won, black gamePiece is 
      * black has won, or an empty Optional if nobody has won
      */
