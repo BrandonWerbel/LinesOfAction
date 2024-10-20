@@ -97,16 +97,28 @@ public class Board {
             .reduce("", (result, element) -> result + "\n" + element);
     }
 
+    /**
+     * Creates a 2d array representing the current board, 
+     * with 1s representing white tiles, -1s representing 
+     * black tiles, and 0s representing empty tiles
+     * @return 2d integer array
+     */
     public int[][] get2dIntArray() {
-        return (int[][])Stream.of(board)
-                .map((row) -> Stream.of(row))
-                .map((row) -> 
-                    row.mapToInt((piece) -> {
-                        if (piece == GamePiece.BLACK) return 1;
-                        else if (piece == GamePiece.WHITE) return -1;
-                        else return 0;})
-                    .toArray())
-                    .toArray();
+
+        int[][] arr = new int[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
+        for(int x = 0; x < Constants.BOARD_SIZE; x++) {
+            for(int y = 0; y < Constants.BOARD_SIZE; y++) {
+                if(board[x][y] == GamePiece.WHITE){
+                    arr[x][y] = 1;
+                } else if(board[x][y] == GamePiece.BLACK){
+                    arr[x][y] = -1;
+                } else {
+                    arr[x][y] = 0;
+                }
+            }   
+        }
+
+        return arr;
     }
     
 }

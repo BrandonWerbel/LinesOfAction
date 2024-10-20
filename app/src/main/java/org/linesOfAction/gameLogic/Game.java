@@ -134,6 +134,12 @@ public class Game {
 
     public GamePiece getPiece(int x, int y) { return board.getPiece(x, y); }
 
+    /**
+     * Returns a 2d array representing the current board, 
+     * with 1s representing white tiles, -1s representing 
+     * black tiles, and 0s representing empty tiles
+     * @return 2d integer array
+     */
     public int[][] getBoard2dIntArray() {
         return board.get2dIntArray(); 
     }
