@@ -13,6 +13,11 @@ public class Lines {
         this.board = board;
     }
 
+    /** 
+     * Returns the horizontal line which contains the given coordinate
+     * @param coordinate
+     * @return Line
+     */
     public Line getHorizontalLine(Coordinate coordinate) {
         ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
         ArrayList<GamePiece> pieces = new ArrayList<GamePiece>();
@@ -25,6 +30,12 @@ public class Lines {
         return new Line(pieces, coordinates);
     }
 
+    
+    /** 
+     * Returns the Vertical line which contains the given coordinate
+     * @param coordinate
+     * @return Line
+     */
     public Line getVerticalLine(Coordinate coordinate) {
         ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
         ArrayList<GamePiece> pieces = new ArrayList<GamePiece>();
@@ -37,6 +48,11 @@ public class Lines {
         return new Line(pieces, coordinates);
     }
 
+    /** 
+     * Returns the forward diagonal (bottom left to top right) line which contains the given coordinate
+     * @param coordinate
+     * @return Line
+     */
     public Line getForwardDiagonalLine(Coordinate coordinate) {
         ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
         ArrayList<GamePiece> pieces = new ArrayList<GamePiece>();
@@ -58,6 +74,11 @@ public class Lines {
         return new Line(pieces, coordinates);
     }
 
+    /** 
+     * Returns the backward diagonal (top left to bottom right) line which contains the given coordinate
+     * @param coordinate
+     * @return Line
+     */
     public Line getBackwardDiagonalLine(Coordinate coordinate) {
         ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
         ArrayList<GamePiece> pieces = new ArrayList<GamePiece>();

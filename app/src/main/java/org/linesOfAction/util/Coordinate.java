@@ -15,22 +15,47 @@ public class Coordinate {
     public int getX() {return x; }
     public int getY() {return y; }
 
+    
+    /** 
+     * Returns a new coordinate, shifted up and to the right by the given offset
+     * @param offset
+     * @return Coordinate
+     */
     public Coordinate moveForwardDiagonal(int offset) {
         return new Coordinate(x + offset, y - offset);
     }
     
+    /** 
+     * Returns a new coordinate, shifted down and to the right by the given offset
+     * @param offset
+     * @return Coordinate
+     */
     public Coordinate moveBackwardDiagonal(int offset) {
         return new Coordinate(x + offset, y + offset);
     }
 
+    /** 
+     * Returns a new coordinate, shifted down by the given offset
+     * @param offset
+     * @return Coordinate
+     */
     public Coordinate moveVertical(int offset) {
         return new Coordinate(x, y + offset);
     }
 
+    /** 
+     * Returns a new coordinate, shifted right by the given offset
+     * @param offset
+     * @return Coordinate
+     */
     public Coordinate moveHorizontal(int offset) {
         return new Coordinate(x + offset, y);
     }
 
+    /**
+     * Returns all coordinates (contained on the board) immediately adjacent to original coordinate
+     * @return
+     */
     public HashSet<Coordinate> getNeighbors() {
         HashSet<Coordinate> neighbors = new HashSet<Coordinate>();
 
@@ -49,6 +74,10 @@ public class Coordinate {
 
     }
 
+    /**
+     * Returns whether or not the coordiante is contained on the board
+     * @return
+     */
     public boolean isOnBoard() {
         return x < Constants.BOARD_SIZE && y < Constants.BOARD_SIZE && x >= 0 && y >= 0;
     }

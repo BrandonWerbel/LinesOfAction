@@ -37,6 +37,11 @@ public class TileButton extends JButton {
         setBackground(backgroundColor);
     }
 
+    
+    /** 
+     * Updates current gamePiece to given gamePiece
+     * @param piece
+     */
     public void addPiece(GamePiece piece) {
         if(piece == null) {
             removePiece();
@@ -47,12 +52,19 @@ public class TileButton extends JButton {
         repaint();
     }
 
+    /**
+     * Removes current gamePiece
+     */
     public void removePiece() {
         this.piece = null;
         repaint();
 
     }
 
+    /**
+     * Paints tile depending on whether or not 
+     * there is a current piece, and whether or not the tile is selected
+     */
     @Override
     protected void paintComponent(Graphics g) {
 
@@ -68,6 +80,10 @@ public class TileButton extends JButton {
         }
     }
 
+    /**
+     * Paints the current piece on the given Graphics2d
+     * @param g
+     */
     private void paintNewPiece(Graphics2D g) {
         if(this.piece == null) {
             throw new IllegalStateException("Must have piece in order to paint it");
@@ -83,6 +99,10 @@ public class TileButton extends JButton {
         g.fillOval(pieceX, pieceY, pieceWidth, pieceHeight);
     }
 
+    /**
+     * Paints a selection marker on the given Graphics2d
+     * @param g
+     */
     private void paintSelection(Graphics2D g) {
         g.setColor(Constants.SELECTION_MARKER_COLOR);
         
@@ -94,23 +114,40 @@ public class TileButton extends JButton {
         g.fillOval(ovalX, ovalY, ovalWidth, ovalHeight);
     }
 
+    /**
+     * Removes selection marker from tile
+     */
     public void unselect() {
         selected = false;
         repaint();
     }
 
+    /**
+     * Adds selection marker to tile
+     */
     public void select() {
         selected = true;
         repaint();
     }
 
     public Coordinate getCoordinate() { return coordinate; }
+    
+    /**
+     * Gets whether or not there is currently a piece on the tile
+     * @return
+     */
     public boolean isOccupied() { return this.piece != null; }
 
+    /**
+     * Removes possible move marker
+     */
     public void removePossibleMove() {
         this.setBorder(defaultBorder);
     }
 
+    /**
+    * Adds possible move marker
+     */
     public void addPossibleMove() {
         this.setBorder(BorderFactory.createLineBorder(Color.GREEN, Constants.POSSIBLE_MOVE_BORDER_THICKNESS));
     }

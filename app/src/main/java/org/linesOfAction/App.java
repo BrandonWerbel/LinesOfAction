@@ -10,6 +10,11 @@ import org.linesOfAction.gui.LinesOfActionGui;
 
 public class App {
 
+    
+    /** 
+     * Main function
+     * @param args
+     */
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());

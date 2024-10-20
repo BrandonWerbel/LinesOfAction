@@ -44,10 +44,19 @@ public class BoardPanel extends JPanel implements ActionListener {
         updateTiles();
     }
 
+    
+    /** 
+     * Returns the tile at the given coordinate
+     * @param coordinate
+     * @return TileButton
+     */
     private TileButton getTile(Coordinate coordinate) {
         return tiles[coordinate.getX()][coordinate.getY()];
     }
 
+    /**
+     * Iteratively goes through the game state and updates tiles accordingly
+     */
     private void updateTiles() {
         for(int x = 0; x < Constants.BOARD_SIZE; x++) {
             for(int y = 0; y < Constants.BOARD_SIZE; y++) {
@@ -56,6 +65,13 @@ public class BoardPanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * First unselects the current tile. Then, 
+     * if there are some possible moves from 
+     * the given tile, selects the tile and 
+     * shows possible moves from that tile
+     * @param tile
+     */
     private void selectTile(TileButton tile) {
         unselectTile();
 
@@ -66,6 +82,9 @@ public class BoardPanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Unselects the current tile
+     */
     private void unselectTile() {
         unshowPossibleMoves();
         if(this.selectedTile != null) {
@@ -74,6 +93,11 @@ public class BoardPanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Finds valid moves from the given coordinate, and 
+     * visually updates the respective tiles accordingly
+     * @param coordinate
+     */
     private void showPossibleMoves(Coordinate coordinate) {
         unshowPossibleMoves();
         HashSet<Coordinate> moves = game.getPossibleMovement(coordinate);
@@ -84,12 +108,20 @@ public class BoardPanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Removes the possible move markers from the current possible moves
+     */
     private void unshowPossibleMoves() {
         for(TileButton tile : currentPossibleMoves) {
             tile.removePossibleMove();
         } 
     }
 
+    /**
+     * If there is no selected tile, select the tile
+     * that has been clicked. Otherwise, attempt to 
+     * move from selected tile to clicked tile
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(!(e.getSource() instanceof TileButton)) {
@@ -112,6 +144,10 @@ public class BoardPanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Disables all tiles, and shows a message announcing the winner
+     * @param winner
+     */
     private void endGame(GamePiece winner) {
 
         for(TileButton[] column : tiles) {

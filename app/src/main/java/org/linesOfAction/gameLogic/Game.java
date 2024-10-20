@@ -24,6 +24,11 @@ public class Game {
         setUpNewGame();
     }
 
+    /**
+     * Sets board with 12 blacks and 12 whites, so that 
+     * black pieces are at top and bottom, and white pieces 
+     * are on right and left sides
+     */
     private void setUpNewGame() {
         for(int y = 1; y < Constants.BOARD_SIZE - 1; y++) {
             board.setPiece(0, y, GamePiece.WHITE);
@@ -36,6 +41,15 @@ public class Game {
         }
     }
 
+    
+    /** 
+     * If a move is valid, moves the gamePiece at the given 
+     * start coordinate to the given target coordinate, 
+     * and then switches the current player. If move is 
+     * not valid, does nothing
+     * @param start
+     * @param target
+     */
     public void move(Coordinate start, Coordinate target) {
         if(isValidMove(start, target)){
             board.setPiece(target, board.getPiece(start));
@@ -44,6 +58,9 @@ public class Game {
         }
     }
 
+    /**
+     * Switches current player to whichever player is not current
+     */
     private void switchPlayer() {
         switch(currentPlayer) {
             case BLACK -> currentPlayer = GamePiece.WHITE;
@@ -53,10 +70,21 @@ public class Game {
         }
     }
 
+    /**
+     * Checks if a piece is allowed to move from the given start coordinate to the given target coordinate
+     * @param start
+     * @param target
+     * @return true if valid, false otherwise
+     */
     private boolean isValidMove(Coordinate start, Coordinate target) {
         return getPossibleMovement(start).contains(target);
     }
 
+    /**
+     * Finds all valid moves for a piece at a given coordinate
+     * @param coordinate
+     * @return HashSet containing coordinates of all valid moves
+     */
     public HashSet<Coordinate> getPossibleMovement(Coordinate coordinate) {
         HashSet<Coordinate> moves = new HashSet<Coordinate>();
         GamePiece piece = board.getPiece(coordinate);

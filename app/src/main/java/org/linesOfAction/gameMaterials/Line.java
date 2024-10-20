@@ -15,6 +15,12 @@ public class Line {
         this.coordinates = coordinates;
     }
 
+    
+    /** 
+     * Gets all legal moves starting from a given coordinate
+     * @param startCoordinate
+     * @return HashSet<Coordinate>
+     */
     public HashSet<Coordinate> getMoves(Coordinate startCoordinate) {
 
         HashSet<Coordinate> moves = new HashSet<Coordinate>();
@@ -36,6 +42,10 @@ public class Line {
         return moves;
     }
 
+    /** 
+     * Gets far a piece in the line is allowed to move, calculated by the total number of pieces in the line
+     * @return int
+     */
     private int getRange() {
         int range = 0;
         for(GamePiece piece : pieces) {
@@ -45,6 +55,13 @@ public class Line {
         return range;
     }
 
+    
+    /** 
+     * Gets if a given move is legal, characterized by the starting index and ending index of the move
+     * @param startIndex index in the given Line's ArrayList where the piece begins
+     * @param targetIndexindex in the given Line's ArrayList where the piece is attempting to go
+     * @return boolean
+     */
     private boolean checkLegalMove(int startIndex, int targetIndex) {
 
         if(startIndex < 0 || startIndex >= pieces.size())
