@@ -133,4 +133,6 @@ public class Game {
     public int getNumPieces(GamePiece player) { return board.getNumPieces(player); }
 
     public GamePiece getPiece(int x, int y) { return board.getPiece(x, y); }
+
+    public GamePiece[][] getBoard2dArray() { return board.get2dArray(); }
 }

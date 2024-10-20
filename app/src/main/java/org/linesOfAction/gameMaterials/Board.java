@@ -94,5 +94,9 @@ public class Board {
                 .reduce("", (result, element) -> result + " " + element))
             .reduce("", (result, element) -> result + "\n" + element);
     }
+
+    public GamePiece[][] get2dArray() {
+        return board.clone();
+    }
     
 }
