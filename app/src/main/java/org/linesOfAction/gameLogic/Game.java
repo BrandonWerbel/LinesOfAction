@@ -134,5 +134,7 @@ public class Game {
 
     public GamePiece getPiece(int x, int y) { return board.getPiece(x, y); }
 
-    public GamePiece[][] getBoard2dArray() { return board.get2dArray(); }
+    public int[][] getBoard2dIntArray() {
+        return board.get2dIntArray(); 
+    }
 }

@@ -3,6 +3,8 @@ package org.linesOfAction.gameMaterials;
 import org.linesOfAction.util.Constants;
 import org.linesOfAction.util.Coordinate;
 
+import com.google.common.collect.Streams;
+
 import java.util.stream.Stream;
 import java.util.Arrays;
 
@@ -95,8 +97,16 @@ public class Board {
             .reduce("", (result, element) -> result + "\n" + element);
     }
 
-    public GamePiece[][] get2dArray() {
-        return board.clone();
+    public int[][] get2dIntArray() {
+        return (int[][])Stream.of(board)
+                .map((row) -> Stream.of(row))
+                .map((row) -> 
+                    row.mapToInt((piece) -> {
+                        if (piece == GamePiece.BLACK) return 1;
+                        else if (piece == GamePiece.WHITE) return -1;
+                        else return 0;})
+                    .toArray())
+                    .toArray();
     }
     
 }
