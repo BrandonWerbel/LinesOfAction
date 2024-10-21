@@ -58,6 +58,14 @@ public class Game {
         }
     }
 
+    public void move(int[] move) {
+        if(move.length != 4) throw new IllegalArgumentException("move array must have length 2");
+
+        Coordinate startCoordinate = new Coordinate(move[0],move[1]);
+        Coordinate endCoordinate = new Coordinate(move[2],move[3]);
+        move(startCoordinate, endCoordinate);
+    }
+
     /**
      * Switches current player to whichever player is not current
      */
