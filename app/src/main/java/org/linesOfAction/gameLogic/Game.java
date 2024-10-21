@@ -88,6 +88,14 @@ public class Game {
         return getPossibleMovement(start).contains(target);
     }
 
+    public boolean isValidMove(int[] move) {
+        if(move.length != 4) throw new IllegalArgumentException("move array must have length 2");
+
+        Coordinate start = new Coordinate(move[0], move[1]);
+        Coordinate target = new Coordinate(move[2], move[3]);
+        return getPossibleMovement(start).contains(target);
+    }
+
     /**
      * Finds all valid moves for a piece at a given coordinate
      * @param coordinate
@@ -137,6 +145,9 @@ public class Game {
         }
         return Optional.empty();
     }
+
+    public boolean hasWhiteWon() {return WinValidator.hasWon(GamePiece.WHITE, board); }
+    public boolean hasBlackWon() {return WinValidator.hasWon(GamePiece.BLACK, board); }
 
     public int getNumPieces(GamePiece player) { return board.getNumPieces(player); }
 
